@@ -1,4 +1,5 @@
 import os
+import feedparser
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
@@ -19,10 +20,14 @@ def favicon():
 @app.route('/hello', methods=['POST'])
 def hello():
    name = request.form.get('name')
+   feed_url = 'http://rss.cnn.com/rss/cnn_topstories.rss'
+   feed = feedparser.parse(feed_url)
+   articles = feed.entries
 
    if name:
        print('Request for hello page received with name=%s' % name)
-       return render_template('hello.html', name = name)
+       print('Request for hello page received with articles=%s' % articles)
+       return render_template('hello.html', name = name, articles = articles)
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
        return redirect(url_for('index'))
