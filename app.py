@@ -26,6 +26,7 @@ def hello():
 
    if name:
        print('Request for hello page received with name=%s' % name)
+       print('Request for hello page received with articles=%s' % articles)
        return render_template('hello.html', name = name, articles = articles)
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
