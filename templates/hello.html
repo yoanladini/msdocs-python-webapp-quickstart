@@ -14,6 +14,18 @@
             <p class="fs-5">
                 It is nice to meet you!
             </p>
+            <p class="fs-5">
+              Here is a list of CNN RSS : 
+            </p>
+            <ul>
+              {% for article in articles %}
+                  <li>
+                      <h3>{{ article.title }}</h3>
+                      <p>{{ article.summary }}</p>
+                      <a href="{{ article.link }}">Lire l'article complet</a>
+                  </li>
+              {% endfor %}
+            </ul>
             <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 gap-3">Back home</a>
           </div>
      </main>      
